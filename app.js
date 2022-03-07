@@ -2,13 +2,15 @@ const express = require('express');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 const blogRoutes = require('./routes/blogRoutes');
+require('dotenv').config();
+
+//process.env
 
 // express app
 const app = express();
 
 // connect to mongodb
-const dbURI =
-  'mongodb+srv://et3rnald:YDRMKfqEf9kP4B4@cluster0.v8ykp.mongodb.net/node-tuts-netninja?retryWrites=true&w=majority';
+const dbURI = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.v8ykp.mongodb.net/node-tuts-netninja?retryWrites=true&w=majority`;
 mongoose
   .connect(dbURI)
   .then((result) => app.listen(3000))
